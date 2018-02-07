@@ -1,0 +1,31 @@
+header {
+    border-bottom: 1px solid #aaaaaa;
+    padding: 16px;
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    background: #ffffff;
+
+    h1 {
+        font-size: 20px;
+    }
+
+    nav {
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+    
+            li {
+                display: inline-block;
+            }
+    
+            a {
+                text-decoration: none; 
+                color: #000000;
+                font-weight: 600;
+                font-size: 18px;  
+            }
+        }
+    }
+}
