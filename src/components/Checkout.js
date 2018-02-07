@@ -2,9 +2,8 @@ import React from 'react';
 
 const Checkout = () => (
   <div>
-    <section className='home'>
-      <h1>Shop</h1>
-      <p>Lista, detalhe do produto e checkout</p>
+    <section>
+      <h1>Compra realizada com sucesso!</h1>
     </section>
   </div>
 )
