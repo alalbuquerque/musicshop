@@ -1,12 +1,15 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import Product from './Product'; 
+import Cart from './Cart';
+import Checkout from './Checkout';
 
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path='/' component={}/>
-      <Route path='/Product' component={}/>
-      <Route path='/Cart' component={}/>
+      <Route exact path='/Product' component={Product}/>
+      <Route path='/Cart' component={Cart}/>
+      <Route path='/Checkout' component={Checkout}/>
     </Switch>
   </main>
 )
