@@ -1,4 +1,5 @@
 import React from 'react';
+import ProductAPI from './Api';
 import { Switch, Route } from 'react-router-dom';
 import Product from './Product'; 
 
