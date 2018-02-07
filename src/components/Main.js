@@ -7,7 +7,7 @@ import Checkout from './Checkout';
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path='/Product' component={Product}/>
+      <Route exact path='/' component={Product}/>
       <Route path='/Cart' component={Cart}/>
       <Route path='/Checkout' component={Checkout}/>
     </Switch>
