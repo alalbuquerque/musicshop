@@ -12,39 +12,76 @@
     &.is-visible {
         display: block;
     }
-}
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 60%;
-    height: auto; 
-}
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    .item {
+        position: relative;
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        .details {
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: flex-end;
+        }
+
+        .close {
+            position: absolute;
+            color: #000000;
+            top: 0;
+            right: 0;
+            font-size: 40px;
+        }
+    }
+
+    .product-details {
+        display: flex;
+        justify-content: space-between;
+        
+        .price {
+            font-size: 24px;
+        }
+        .album-details {    
+            width: 50%;
+        }
+    }
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 60%;
+        height: auto; 
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 100%;
+        h4 {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        .compra {
+            align-self: flex-end;
+            text-align: center;
+        }
+
+        .button {
+            background: #000000;
+            color: #ffffff;
+            padding: 16px;
+            margin: 8px auto;
+        }
+    }
+
 }
 
-.info {
-    h4 {
-        margin-bottom: 4px;
-    }
-}
-.compra {
-    text-align: center;
-}
-.button {
-    background: #000000;
-    color: #ffffff;
-    padding: 16px;
-    margin: 8px auto;
-}
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}

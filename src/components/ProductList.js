@@ -106,31 +106,31 @@ class ProductList extends React.Component {
 		            ))
 		          }
 		        </div>
-		        {modalProduct.visible &&
-		          <Modal visible={modalProduct.visible}>
-		            <Product key={modalProduct.id} product={modalProduct.product}>
-		              <button className="close" onClick={this.closeModal}>&times;</button>
-		              <div className="info">
-		                <h4>Detalhes do Album</h4>
-		                <ul className="details">
-		                    {
-		                      modalProduct.product.details.map(p => (
-		                          <li key={p.name}>
-		                            <ProductDetails
-			                            product={p}
-			                         />
-		                          </li>
-		                      ))
-		                    }
-		                </ul>
-		              </div>
-		            <div className="compra">
-		               <Button onClick={() => this.addCart(modalProduct.product)}>Comprar</Button>
-		            </div>
-		            </Product>
-		          </Modal>
-		        }
-		        
+			        {modalProduct.visible &&
+			          <Modal visible={modalProduct.visible}>
+			            <Product key={modalProduct.id} product={modalProduct.product}>
+			              <button className="close" onClick={this.closeModal}>&times;</button>
+			              <div className="info">
+			                <h4>Detalhes:</h4>
+			                <ul className="details-list">
+			                    {
+			                      modalProduct.product.details.map(p => (
+			                          <li key={p.name}>
+			                            <ProductDetails
+				                            product={p}
+				                         />
+			                          </li>
+			                      ))
+			                    }
+			                </ul>
+			                
+				            <div className="compra">
+				               <Button onClick={() => this.addCart(modalProduct.product)}>Comprar</Button>
+				            </div>
+			              </div>
+			            </Product>
+			          </Modal>
+			        }
 			</div>
 		)
 	}
