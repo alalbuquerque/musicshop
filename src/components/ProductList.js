@@ -86,8 +86,7 @@ class ProductList extends React.Component {
 
     this.setState({
       cart: {
-        ...cart,
-        visible: !cart.visible
+        ...cart
       }
     })
   }
@@ -131,6 +130,7 @@ class ProductList extends React.Component {
 		            </Product>
 		          </Modal>
 		        }
+		        
 			</div>
 		)
 	}
