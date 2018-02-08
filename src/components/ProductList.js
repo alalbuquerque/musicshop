@@ -112,18 +112,18 @@ class ProductList extends React.Component {
 			              <button className="close" onClick={this.closeModal}>&times;</button>
 			              <div className="info">
 			                <h4>Detalhes:</h4>
-			                <ul className="details-list">
+			                <ol className="details-list">
 			                    {
-			                      modalProduct.product.details.map(p => (
-			                          <li key={p.name}>
+			                      modalProduct.product.details.map((p, key) => (
+			                          <li key={p.album_id}>
 			                            <ProductDetails
 				                            product={p}
 				                         />
 			                          </li>
 			                      ))
 			                    }
-			                </ul>
-			                
+			                </ol>
+
 				            <div className="compra">
 				               <Button onClick={() => this.addCart(modalProduct.product)}>Comprar</Button>
 				            </div>
