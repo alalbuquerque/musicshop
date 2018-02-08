@@ -123,11 +123,11 @@ class ProductList extends React.Component {
 			                      ))
 			                    }
 			                </ol>
-
-				            <div className="compra">
-				               <Button onClick={() => this.addCart(modalProduct.product)}>Comprar</Button>
-				            </div>
 			              </div>
+                    
+                    <div className="compra">
+                       <Button onClick={() => this.addCart(modalProduct.product)}>Comprar</Button>
+                    </div>
 			            </Product>
 			          </Modal>
 			        }
