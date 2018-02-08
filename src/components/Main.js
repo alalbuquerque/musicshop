@@ -29,8 +29,14 @@ class Main extends React.Component {
     this.closeModal = this.closeModal.bind(this)
     this.toggle = this.toggle.bind(this)
     this.removeCart = this.removeCart.bind(this)
+    this.handleChange = this.handleChange.bind(this);
   }
 
+  handleChange(e) {
+    this.setState({value: e.target.value});
+  }
+
+  //modal
   modal (product) {
     const { modalProduct } = this.state
 
@@ -98,8 +104,8 @@ class Main extends React.Component {
     return (  
 	  <main>
 	    <Switch>
-	      <Route exact path="/" component={ProductList}/>
-        <Route exact path="/carrinho" component={Cart}/>
+	      <Route exact path="/" products={products} onLoad="{this.handleChange}" component={ProductList}/>
+        <Route exact path="/carrinho"  cart={cart}  onLoad="{this.handleChange}" component={Cart}/>
         <Route exact path="/finalizado" component={Checkout}/>
 	    </Switch>
 	  </main>

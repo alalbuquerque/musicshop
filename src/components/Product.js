@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 const Product = ({product, children, onClick}) => (
   <div className="item" onClick={onClick}>
       <h2 className="title">{product.name} -  {product.vendor.name}</h2>
+      <img src={require("./images/album-photo.jpg")} />
       <strong className="price">R$ {product.price}</strong>
       {children}  
   </div>
