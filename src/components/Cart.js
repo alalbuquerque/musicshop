@@ -10,9 +10,9 @@ const Cart = ({products, remove}) => {
     <div className="cart">
       <div className="header">
         <h3>Carrinho</h3>
-        <h4>{products.length ? `Lista (${products.length})` : 'Seu carrinho está vazio :('}</h4>
       </div>
       <div className="products-container">  
+        <h4>{products.length ? `Lista (${products.length})` : 'Seu carrinho está vazio :('}</h4>
         <div className="products">
             {
             products.map(product => (

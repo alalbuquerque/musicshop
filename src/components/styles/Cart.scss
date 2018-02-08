@@ -1,9 +1,5 @@
 .cart {
-    position: fixed;
-    right: 0;
-    top: 0;
     background: #ffffff;
-    width: 300px;
     border-top: 1px solid #cccccc;
     height: 100%;
     .header {
@@ -16,20 +12,16 @@
             margin-top: 0;
         }
     }
-    .products-container {          
-        display: block;
-        height:  calc(100% - 234px);
-        position: relative;
-        overflow-y: scroll;
+    .products-container { 
         background: #B8B8B8;
+        h4 {
+
+        }
     }
     .products {    
         padding: 8px;
-        width: 250px;
         .item {
-            width: 100%;
-            min-width: 234px;
-            max-width: 100%;
+            width: 300px;
             height: 45px;
             margin: 8px;
             padding: 8px;
@@ -54,7 +46,7 @@
         position: fixed;
         bottom: 0;
         height: 140px;
-        width: 300px;
+        width: 100%;
         background: #cccccc;
         text-align: center;
         .cart-price {

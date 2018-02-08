@@ -1,4 +1,5 @@
 import React from 'react';
+import App from './App';
 import ProductAPI from './Api';
 import Product from './Product';
 import ProductDetails from './ProductDetails';
@@ -7,8 +8,8 @@ import Modal from './Modal';
 
 
 class ProductList extends React.Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
 
     this.state = {
       products: ProductAPI,
@@ -17,13 +18,20 @@ class ProductList extends React.Component {
         product: {},
         visible: false
       },
+
+      cart: {
+        products: [],
+        visible: false
+      }
     }
 
     this.modal = this.modal.bind(this)
+    this.addCart = this.addCart.bind(this)
     this.closeModal = this.closeModal.bind(this)
+    this.toggle = this.toggle.bind(this)
+    this.removeCart = this.removeCart.bind(this)
   }
 
-  //modal
   modal (product) {
     const { modalProduct } = this.state
 
@@ -46,9 +54,46 @@ class ProductList extends React.Component {
     })
   }
 
-  render () {
-    const { products, modalProduct } = this.state
+  //cart
+  addCart (product) {
+    const { cart, modalProduct } = this.state
+    product = {...product}
 
+    this.setState({
+      cart: {
+        products: [...cart.products, product]
+      },
+      modalProduct: {
+        ...modalProduct,
+        visible: false
+      }
+    })
+  }
+  
+  removeCart (productId) {
+      const { cart } = this.state
+
+      this.setState({
+        cart: {
+          ...cart,
+          products: cart.products.filter(product => product.id !== productId)
+        }
+      })
+  }
+
+  toggle () {
+    const { cart } = this.state
+
+    this.setState({
+      cart: {
+        ...cart,
+        visible: !cart.visible
+      }
+    })
+  }
+
+  render () {
+    const { cart, products, modalProduct } = this.state
     return (  
 			<div className="product-list">
 		        <div className="list">
