@@ -35,7 +35,7 @@ class App extends React.Component {  constructor () {
   }
 
   handleChange(e) {
-    this.setState({value: e.target.value});
+    this.setState({cart: ' '});
   }
 
   //modal
@@ -107,8 +107,8 @@ class App extends React.Component {  constructor () {
 	    <Header />
 	    <main>
 		    <Switch>
-		      	<Route exact path="/" products={products} onLoad="{this.handleChange}" component={ProductList}/>
-	        	<Route exact path="/carrinho"  cart={cart}  onLoad="{this.handleChange}" component={Cart}/>
+		      	<Route exact path="/" component={ProductList}/>
+	        	<Route exact path="/carrinho"  component={Cart}/>
 	        	<Route exact path="/finalizado" component={Checkout}/>
 		    </Switch>
 	    </main>
