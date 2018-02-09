@@ -2,7 +2,6 @@ import React from 'react';
 import ProductAPI from './Api';
 import { Switch, Route } from 'react-router-dom';
 import Header from './Header';
-import Main from './Main';
 import ProductList from './ProductList'; 
 import Cart from './Cart';
 import Checkout from './Checkout';
