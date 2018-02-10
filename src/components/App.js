@@ -1,11 +1,28 @@
 import React from 'react';
 import ProductAPI from './Api';
-import { Switch, Route } from 'react-router-dom';
-import Header from './Header';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
 import ProductList from './ProductList'; 
 import Cart from './Cart';
 import Checkout from './Checkout';
+
+//styles
 import './styles/App.scss';
+import FaCart from 'react-icons/lib/md/shopping-cart';
+import FaMusic from 'react-icons/lib/fa/music';
+
+const route = [
+  { 
+    path: '/',
+    component: ProductList,
+    fetchInitialData: (id) => ProductAPI(id)
+  },
+  {
+    path: '/',
+    component: Cart,
+    fetchInitialData: (id) => ProductAPI(id)
+  }
+];
 
 
 class App extends React.Component {  constructor () {
@@ -128,13 +145,18 @@ class App extends React.Component {  constructor () {
     const { cart, products, modalProduct } = this.state
     return (  
 	  <div>
-	    <Header />
+      <header>
+        <nav>
+          <ul>
+            <li><Link to="/"><h1><FaMusic /> music<span>shop</span></h1></Link></li>
+            <li className="carrinho"><Link to="/carrinho">carrinho <span><FaCart /></span></Link></li>
+          </ul>
+        </nav>
+      </header>
 	    <main>
-		    <Switch>
-		      	<Route exact path="/" component={ProductList}/>
-	        	<Route exact path="/carrinho"  component={Cart}/>
-	        	<Route exact path="/finalizado" component={Checkout}/>
-		    </Switch>
+      	<Route exact path="/" component={ProductList}/>
+      	<Route exact path="/carrinho"  component={Cart}/>
+      	<Route exact path="/finalizado" component={Checkout}/>
 	    </main>
 	  </div>
 
