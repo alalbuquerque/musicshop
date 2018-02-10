@@ -98,6 +98,31 @@ class App extends React.Component {  constructor () {
     })
   }
 
+  checkout (amount) {
+    amount = Math.round(amount * 100)
+
+    const checkout = new window.PagarMeCheckout.Checkout({
+      encryption_key: 'chave',
+      success: transaction => {
+        console.log(transaction);
+      }
+    })
+
+    checkout.open({
+      amount,
+      buttonText: 'Pagar',
+      customerData: 'true',
+      paymentMethods: 'credit_card',
+      maxInstallments: 12,
+      uiColor: '#444444',
+      createToken: 'true',
+      interestRate: 12,
+      freeInstallments: 12,
+      defaultInstallment: 5,
+      headerText: 'Finalizar compra.'
+    })
+  }
+
   render () {
 
     const { cart, products, modalProduct } = this.state
