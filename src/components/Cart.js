@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Product from './Product';
 import Button from './Button';
+import FaCart from 'react-icons/lib/md/shopping-cart';
 
 const Cart = ({products, remove}) => {
   const total = products.map(product => product.price).reduce((previousPrice, currentPrice) => previousPrice + currentPrice, 0)
@@ -9,7 +10,7 @@ const Cart = ({products, remove}) => {
   return (
     <div className="cart">
       <div className="header">
-        <h3>Carrinho</h3>
+        <h3>Carrinho <FaCart /></h3>
       </div>
       <div className="products-container">  
         <h4>{products.length ? `Lista (${products.length})` : 'Seu carrinho está vazio :('}</h4>
