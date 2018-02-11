@@ -2,29 +2,14 @@ import React from 'react';
 import ProductAPI from './Api';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import ProductList from './components/ProductList'; 
+
+import Header from './components/Header';
+//import ProductList from './components/ProductList'; 
 import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 
-//styles
-import FaCart from 'react-icons/lib/md/shopping-cart';
-import FaMusic from 'react-icons/lib/fa/music';
-
-const route = [
-  { 
-    path: '/',
-    component: ProductList,
-    fetchInitialData: (id) => ProductAPI(id)
-  },
-  {
-    path: '/',
-    component: Cart,
-    fetchInitialData: (id) => ProductAPI(id)
-  }
-];
-
-
-class App extends React.Component {  constructor () {
+class App extends React.Component {  
+  constructor () {
     super()
 
     this.state = {
@@ -140,25 +125,33 @@ class App extends React.Component {  constructor () {
   }
 
   render () {
-
-    const { cart, products, modalProduct } = this.state
-    return (  
-	  <div>
-      <header>
-        <nav>
-          <ul>
-            <li><Link to="/"><h1><FaMusic /> music<span>shop</span></h1></Link></li>
-            <li className="carrinho"><Link to="/carrinho">carrinho <span><FaCart /></span></Link></li>
-          </ul>
-        </nav>
-      </header>
-	    <main>
-      	<Route exact path="/" component={ProductList}/>
-      	<Route exact path="/carrinho"  component={Cart}/>
-      	<Route exact path="/finalizado" component={Checkout}/>
-	    </main>
-	  </div>
-
+    const routes = [
+      { 
+        path: '/',
+        component: ProductList,
+        fetchInitialData: this.state
+      },
+      {
+        path: '/',
+        component: Cart,
+        fetchInitialData: this.state
+      }
+    ];
+    //const { cart, products, modalProduct } = this.state
+    return ( 
+      <Router> 
+    	  <div>
+          <Header />
+    	    <main>
+            {routes.map(({ path, component: C, fetchInitialData}) => (
+              <Route 
+                path={path}
+                render={(props) => <C {...props} fetchInitialData={fetchInitialData} />}
+              />
+              ))}
+    	    </main>
+    	  </div>
+      </Router>
 		)
 	}
 }

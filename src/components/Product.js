@@ -6,7 +6,7 @@ const Product = ({product, children, onClick}) => (
 	  	<h2 className="title">{product.name} -  {product.vendor.name}</h2>
       	<div className="product-details">
       		<div className="details">
-      			<img src={require("./images/album-photo.jpg")} />
+      			<img src={require("../images/album-photo.jpg")} />
       			<strong className="price">R$ {product.price}</strong>
       		</div>
 	    	<div className="album-details">

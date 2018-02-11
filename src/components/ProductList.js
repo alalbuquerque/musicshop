@@ -7,7 +7,7 @@ import Modal from './Modal';
 class ProductList extends React.Component {
   
   render () {
-    const { cart, products, modalProduct } = this.state
+    //const { cart, products, modalProduct } = this.state
     return (  
 			<div className="product-list">
 		        <div className="list">
