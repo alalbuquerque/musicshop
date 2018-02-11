@@ -2,9 +2,9 @@ import React from 'react';
 import ProductAPI from './Api';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import ProductList from './ProductList'; 
-import Cart from './Cart';
-import Checkout from './Checkout';
+import ProductList from './components/ProductList'; 
+import Cart from './components/Cart';
+import Checkout from './components/Checkout';
 
 //styles
 import FaCart from 'react-icons/lib/md/shopping-cart';

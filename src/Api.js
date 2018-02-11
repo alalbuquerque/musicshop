@@ -1,4 +1,4 @@
-import Products from '../products.json';
+import Products from './products.json';
 
 const Api = {
     products: Products,
