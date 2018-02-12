@@ -129,12 +129,12 @@ class App extends React.Component {
       { 
         path: '/',
         component: ProductList,
-        fetchInitialData: this.state
+        fetchInitialData: this.state.products
       },
       {
-        path: '/',
+        path: '/carrinho',
         component: Cart,
-        fetchInitialData: this.state
+        fetchInitialData: this.state.cart
       }
     ];
     //const { cart, products, modalProduct } = this.state
