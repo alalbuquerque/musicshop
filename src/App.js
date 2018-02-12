@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Cart from './components/Cart';
 import ProductList from './components/ProductList';
-import Checkout from './components/Checkout';
+import Checkout from './components/Checkout'; 
 
 
 class App extends React.Component {  
@@ -104,7 +104,7 @@ class App extends React.Component {
     amount = Math.round(amount * 100)
 
     const checkout = new window.PagarMeCheckout.Checkout({
-      encryption_key: 'chave',
+      encryption_key: process.env.REACT_APP_ENC_KEY,
       success: transaction => {
         console.log(transaction);
       }

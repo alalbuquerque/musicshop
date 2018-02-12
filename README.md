@@ -11,18 +11,35 @@ musicshop/
     index.html
     favicon.ico
   src/
-    App.css
+    components/
+      Button.js
+      Cart.js
+      Checkout.js
+      Header.js
+      Modal.js
+      Product.js
+      ProductDetails.js
+      ProductList.js
+    images/
+      album-photo.jpg
+    styles/
+      App.scss
+      Base.scss
+      Button.scss
+      Cart.scss
+      Header.scss
+      Modal.scss      
+      Product.scss      
+      ProductDetails.scss      
+      ProductList.scss
     App.js
-    App.test.js
-    index.css
-    index.js
-    logo.svg
+    Api.js
 ```
 
 ## Instalação
 
-### `yarn`
+`yarn install`
 
+`yarn start`
 
-### `yarn test`
 [http://localhost:3000](http://localhost:3000)
