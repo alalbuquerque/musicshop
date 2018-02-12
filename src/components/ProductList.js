@@ -14,7 +14,7 @@ const ProductList = ({cart, products, modalProduct}) => (
                 <Product
                   key={product.id}
                   product={product}
-                  onClick={(pro) => this.modal(product)}
+                  onClick={() => this.modal(product)}
                 />
             ))
           }

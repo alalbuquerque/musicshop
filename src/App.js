@@ -134,7 +134,7 @@ class App extends React.Component {
     	  <div>
           <Header cart={cart} />
     	    <main>
-           <Route path="/" render={(props) => <ProductList {...props} cart={cart} products={products} modalProduct={modalProduct} />} />
+           <Route exact path="/" render={(props) => <ProductList {...props} cart={cart} products={products} modalProduct={modalProduct} />} />
            <Route path="/carrinho"  render={(props) => <Cart {...props} cart={cart} />} />
            <Route path="/finalizando"  render={(props) => <Checkout {...props} cart={cart} />} />
     	    </main>
