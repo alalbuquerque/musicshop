@@ -1,12 +1,13 @@
 import React from 'react';
 import ProductAPI from './Api';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
 import Header from './components/Header';
-//import ProductList from './components/ProductList'; 
 import Cart from './components/Cart';
+import ProductList from './components/ProductList';
 import Checkout from './components/Checkout';
+
 
 class App extends React.Component {  
   constructor () {
@@ -125,30 +126,17 @@ class App extends React.Component {
   }
 
   render () {
-    const routes = [
-      { 
-        path: '/',
-        component: ProductList,
-        fetchInitialData: this.state.products
-      },
-      {
-        path: '/carrinho',
-        component: Cart,
-        fetchInitialData: this.state.cart
-      }
-    ];
-    //const { cart, products, modalProduct } = this.state
+    
+    const { cart, products, modalProduct } = this.state
+    
     return ( 
       <Router> 
     	  <div>
-          <Header />
+          <Header cart={cart} />
     	    <main>
-            {routes.map(({ path, component: C, fetchInitialData}) => (
-              <Route 
-                path={path}
-                render={(props) => <C {...props} fetchInitialData={fetchInitialData} />}
-              />
-              ))}
+           <Route path="/" render={(props) => <ProductList {...props} cart={cart} products={products} modalProduct={modalProduct} />} />
+           <Route path="/carrinho"  render={(props) => <Cart {...props} cart={cart} />} />
+           <Route path="/finalizando"  render={(props) => <Checkout {...props} cart={cart} />} />
     	    </main>
     	  </div>
       </Router>
