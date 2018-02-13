@@ -15,6 +15,7 @@ musicshop/
       Button.js
       Cart.js
       Checkout.js
+      FullProduct.js
       Header.js
       Modal.js
       Product.js
@@ -23,15 +24,18 @@ musicshop/
     images/
       album-photo.jpg
     styles/
+      base/
+        Base.scss
+        Main.scss
+      components/
+        Button.scss
+        Cart.scss
+        Header.scss
+        Modal.scss      
+        Product.scss      
+        ProductDetails.scss      
+        ProductList.scss
       App.scss
-      Base.scss
-      Button.scss
-      Cart.scss
-      Header.scss
-      Modal.scss      
-      Product.scss      
-      ProductDetails.scss      
-      ProductList.scss
     App.js
     Api.js
 ```
