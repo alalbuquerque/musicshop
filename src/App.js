@@ -14,16 +14,26 @@ class App extends React.Component {
     super()
 
     this.state = {
-      products: ProductAPI,
-
+      products: [],
       cart: {
-        products: [],
-        visible: false
-      }
+        products: []
+      },
+      totalItems: 0,
+      totalAmount: 0, 
     }
 
     this.addCart = this.addCart.bind(this)
     this.removeCart = this.removeCart.bind(this)
+  }
+
+  getProducts(){
+    this.setState({
+      products : ProductAPI
+    })
+  }
+
+  componentWillMount(){
+    this.getProducts();
   }
 
   //cart
@@ -84,7 +94,7 @@ class App extends React.Component {
           <Header cart={cart} />
     	    <main>
            <Route exact path="/" render={(props) => <ProductList {...props} cart={cart} products={products} />} />
-           <Route path="/produto/:id"  render={(props) => <FullProduct {...props} products={products}  triggerCart={this.addCart}  />} />
+           <Route path="/produto/:id"  render={(props) => <FullProduct {...props} products={products} getProductInfo={this.getProduct}  />} />
            <Route path="/carrinho"  render={(props) => <Cart {...props} cart={cart}  triggerCart={this.removeCart}/>} />
            <Route path="/finalizando"  render={(props) => <Checkout {...props} cart={cart} />} />
     	    </main>

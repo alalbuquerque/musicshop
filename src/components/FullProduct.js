@@ -6,10 +6,16 @@ import ProductDetails from './ProductDetails';
 import Button from './Button';
 
 class FullProduct extends React.Component {
+    constructor (props) {
+      super(props)
+
+      this.state = {
+        product :  this.props.products.get(this.props.match.params.id)
+      }
+    }
+
   render() {
-    const products = this.props.products; 
-    console.log(products)
-    const product = products.get(this.props.match.params.id);
+    const { product } = this.state;
 
     return product ? (
       <div className="full-product">
@@ -28,7 +34,7 @@ class FullProduct extends React.Component {
           </div>
 
           <div className="compra">
-             <Button onClick={this.props.triggerCart(product)}>Comprar</Button>
+             <Button>Comprar</Button>
           </div>
         </Product>
       </div>
