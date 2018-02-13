@@ -1,13 +1,13 @@
 /*App*/
-@import './Base/Base';
-@import './Base/Main';
+@import './base/Base';
+@import './base/Main';
 
 /*Components*/
-@import './Components/Header';
-@import './Components/Cart';
-@import './Components/ProductList';
-@import './Components/FullProduct';
-@import './Components/ProductDetails';
+@import './components/Header';
+@import './components/Cart';
+@import './components/ProductList';
+@import './components/FullProduct';
+@import './components/ProductDetails';
 
 /*Utils*/
-@import './Components/Button';
+@import './components/Button';
