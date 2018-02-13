@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Product from './Product';
 import ProductDetails from './ProductDetails';
@@ -6,44 +7,20 @@ import ProductDetails from './ProductDetails';
 import Button from './Button';
 import Modal from './Modal';
 
-const ProductList = ({cart, products, modalProduct}) => (
+const ProductList = ({cart, products}) => (
     <div className="product-list">
         <div className="list">
           {
             products.all().map(product => (
-                <Product
-                  key={product.id}
-                  product={product}
-                  onClick={() => this.modal(product)}
-                />
+                <Link to={{pathname: `produto/${product.id}`, query: { id: product.id }}}>
+                  <Product
+                    key={product.id}
+                    product={product}
+                  />
+                </ Link>
             ))
           }
         </div>
-          {modalProduct.visible &&
-            <Modal visible={modalProduct.visible}>
-              <Product key={modalProduct.id} product={modalProduct.product}>
-                <button className="close" onClick={this.closeModal}>&times;</button>
-                <div className="info">
-                  <h4>Detalhes:</h4>
-                  <ol className="details-list">
-                      {
-                        modalProduct.product.details.map((p, key) => (
-                            <li key={p.album_id}>
-                              <ProductDetails
-                                product={p}
-                             />
-                            </li>
-                        ))
-                      }
-                  </ol>
-                </div>
-
-                <div className="compra">
-                   <Button onClick={() => this.addCart(modalProduct.product)}>Comprar</Button>
-                </div>
-              </Product>
-            </Modal>
-          }
   </div>
 ) 
 

@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Cart from './components/Cart';
 import ProductList from './components/ProductList';
+import FullProduct from './components/FullProduct';
 import Checkout from './components/Checkout'; 
 
 
@@ -32,11 +33,6 @@ class App extends React.Component {
     this.closeModal = this.closeModal.bind(this)
     this.toggle = this.toggle.bind(this)
     this.removeCart = this.removeCart.bind(this)
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(e) {
-    this.setState({cart: ' '});
   }
 
   //modal
@@ -127,14 +123,15 @@ class App extends React.Component {
 
   render () {
     
-    const { cart, products, modalProduct } = this.state
+    const { cart, products } = this.state
     
     return ( 
       <Router> 
     	  <div>
           <Header cart={cart} />
     	    <main>
-           <Route exact path="/" render={(props) => <ProductList {...props} cart={cart} products={products} modalProduct={modalProduct} />} />
+           <Route exact path="/" render={(props) => <ProductList {...props} cart={cart} products={products} />} />
+           <Route path="/produto/:id"  render={(props) => <FullProduct {...props} products={products} />} />
            <Route path="/carrinho"  render={(props) => <Cart {...props} cart={cart} />} />
            <Route path="/finalizando"  render={(props) => <Checkout {...props} cart={cart} />} />
     	    </main>
