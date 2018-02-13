@@ -9,9 +9,13 @@ class FullProduct extends React.Component {
   constructor (props) {
     super(props)
 
+    console.log(this.props)
+
     this.state = {
       product :  this.props.products.get(this.props.match.params.id),
-      cart: {}
+      cart: {
+        products : []
+      }
     }
   }
 

@@ -48,8 +48,8 @@ class App extends React.Component {
   }
 
   handleAddToCart (product) {
-    const cart = this.state.cart;
-    const productID = product.id;
+    let cart = this.state.cart;
+    let productID = product.id;
   
     if(this.checkProduct(productID)){
       this.setState({
@@ -69,7 +69,7 @@ class App extends React.Component {
 
   sumTotalItems () {
     let total = 0;
-    const cart = this.state.cart;
+    let cart = this.state.cart;
 
     total = cart.length;
     this.setState({
@@ -79,7 +79,7 @@ class App extends React.Component {
 
   sumTotalAmount () {
     let total = 0;
-    const cart = this.state.cart;
+    let cart = this.state.cart;
 
     for (var i=0; i<cart.length; i++) {
         total += cart[i].price * parseInt(cart[i].quantity);
@@ -102,6 +102,18 @@ class App extends React.Component {
       })
   }
 
+  handleRemoveProduct(id, e){
+    let cart = this.state.cart;
+    let index = cart.findIndex((x => x.id == id));
+    cart.splice(index, 1);
+    this.setState({
+      cart: cart
+    })
+    this.sumTotalItems(this.state.cart);
+    this.sumTotalAmount(this.state.cart);
+    e.preventDefault();
+  }
+  
   checkout (amount) {
     amount = Math.round(amount * 100)
 
@@ -143,11 +155,11 @@ class App extends React.Component {
             />
            <Route 
               path="/produto/:id"  
-              render={(props) => <FullProduct {...props} products={products} addToCart={this.handleAddToCart}  />} 
+              render={(props) => <FullProduct {...props} cart={cart} products={products} addToCart={this.handleAddToCart}  />} 
             />
            <Route 
               path="/carrinho"  
-              render={(props) => <Cart {...props} cart={cart}  triggerCart={this.removeCart}/>} 
+              render={(props) => <Cart {...props} cart={cart}  removeToCart={this.removeCart}/>} 
             />
            <Route 
               path="/finalizando"  
