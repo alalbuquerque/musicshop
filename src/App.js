@@ -2,7 +2,6 @@ import React from 'react';
 import ProductAPI from './Api';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-
 import Header from './components/Header';
 import Cart from './components/Cart';
 import ProductList from './components/ProductList';
@@ -16,11 +15,6 @@ class App extends React.Component {
 
     this.state = {
       products: ProductAPI,
-      
-      modalProduct: {
-        product: {},
-        visible: false
-      },
 
       cart: {
         products: [],
@@ -28,48 +22,18 @@ class App extends React.Component {
       }
     }
 
-    this.modal = this.modal.bind(this)
     this.addCart = this.addCart.bind(this)
-    this.closeModal = this.closeModal.bind(this)
-    this.toggle = this.toggle.bind(this)
     this.removeCart = this.removeCart.bind(this)
-  }
-
-  //modal
-  modal (product) {
-    const { modalProduct } = this.state
-
-    this.setState({
-      modalProduct: {
-        product,
-        visible: !modalProduct.visible
-      }
-    })
-  }
-
-  closeModal () {
-    const { modalProduct } = this.state
-
-    this.setState({
-      modalProduct: {
-        ...modalProduct,
-        visible: false
-      }
-    })
   }
 
   //cart
   addCart (product) {
-    const { cart, modalProduct } = this.state
+    const { cart } = this.state
     product = {...product}
 
     this.setState({
       cart: {
         products: [...cart.products, product]
-      },
-      modalProduct: {
-        ...modalProduct,
-        visible: false
       }
     })
   }
@@ -83,17 +47,6 @@ class App extends React.Component {
           products: cart.products.filter(product => product.id !== productId)
         }
       })
-  }
-
-  toggle () {
-    const { cart } = this.state
-
-    this.setState({
-      cart: {
-        ...cart,
-        visible: !cart.visible
-      }
-    })
   }
 
   checkout (amount) {
@@ -131,8 +84,8 @@ class App extends React.Component {
           <Header cart={cart} />
     	    <main>
            <Route exact path="/" render={(props) => <ProductList {...props} cart={cart} products={products} />} />
-           <Route path="/produto/:id"  render={(props) => <FullProduct {...props} products={products} />} />
-           <Route path="/carrinho"  render={(props) => <Cart {...props} cart={cart} />} />
+           <Route path="/produto/:id"  render={(props) => <FullProduct {...props} products={products}  triggerCart={this.addCart}  />} />
+           <Route path="/carrinho"  render={(props) => <Cart {...props} cart={cart}  triggerCart={this.removeCart}/>} />
            <Route path="/finalizando"  render={(props) => <Checkout {...props} cart={cart} />} />
     	    </main>
     	  </div>

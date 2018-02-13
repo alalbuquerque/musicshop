@@ -7,16 +7,13 @@ import Button from './Button';
 
 class FullProduct extends React.Component {
   render() {
-    const { products, location } = this.props;
+    const products = this.props.products; 
+    console.log(products)
     const product = products.get(this.props.match.params.id);
-
-    if (!products.length && !location) {
-        return (<div>Loading...</div>);
-    }
 
     return product ? (
       <div className="full-product">
-        <Product key={product.id} product={product}>
+        <Product key={product.name} product={product}>
           <div className="info">
             <h4>Detalhes:</h4>
             <ol className="details-list">
@@ -31,7 +28,7 @@ class FullProduct extends React.Component {
           </div>
 
           <div className="compra">
-             <Button onClick={() => this.addCart(product)}>Comprar</Button>
+             <Button onClick={this.props.triggerCart(product)}>Comprar</Button>
           </div>
         </Product>
       </div>

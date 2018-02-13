@@ -17,8 +17,7 @@ const ProductList = ({cart, products}) => (
 
 ProductList.propTypes = {
   cart: PropTypes.object.isRequired,
-  products: PropTypes.object.isRequired,
-  modalProduct: PropTypes.object.isRequired
+  products: PropTypes.object.isRequired
 }
 
 export default ProductList
