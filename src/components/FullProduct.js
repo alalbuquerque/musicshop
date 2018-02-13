@@ -5,11 +5,9 @@ import ProductDetails from './ProductDetails';
 
 import Button from './Button';
 
-
 class FullProduct extends React.Component {
   render() {
     const { products, location } = this.props;
-    console.log(this.props);
     const product = products.get(this.props.match.params.id);
 
     if (!products.length && !location) {
@@ -25,9 +23,7 @@ class FullProduct extends React.Component {
                 {
                   product.details.map((p, key) => (
                       <li key={p.album_id}>
-                        <ProductDetails
-                          product={p}
-                       />
+                        <ProductDetails product={p} />
                       </li>
                   ))
                 }
@@ -46,4 +42,3 @@ class FullProduct extends React.Component {
 }
 
 export default FullProduct
-          
