@@ -1,8 +1,7 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import Product from './Product';
 import ProductDetails from './ProductDetails';
-
 import Button from './Button';
 
 class FullProduct extends React.Component {
@@ -30,11 +29,20 @@ class FullProduct extends React.Component {
     })
   }
 
+
   render() {
     const { product } = this.state;
+  console.log(this.props)
 
     return product ? (
       <div className="full-product">
+
+        <div className="breadcrumb">
+          <p>
+            <Link to="/" activeClassName="active">Home</Link>> {product.name}
+          </p>
+        </div>
+        <br />
         <Product key={product.id+product.sku} product={product}>
           <div className="info">
             <h4>Detalhes:</h4>
