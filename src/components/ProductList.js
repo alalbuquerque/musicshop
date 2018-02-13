@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import Product from './Product';
 
 const ProductList = ({cart, products}) => (
-  <div className="product-list">
+  <div className="lista-produtos">
     {
       products.all().map(product => (
         <Link to={{pathname: `produto/${product.id}`, query: { id: product.id }}}>
           <Product key={product.id} product={product} />
         </ Link>
       )
-    }
+    )}
   </div>
 ) 
 
