@@ -26,7 +26,6 @@ class App extends React.Component {
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.sumTotalItems = this.sumTotalItems.bind(this);
     this.sumTotalAmount = this.sumTotalAmount.bind(this);
-    this.checkProduct = this.checkProduct.bind(this);
   }
 
   getProducts(){
@@ -37,14 +36,6 @@ class App extends React.Component {
 
   componentWillMount(){
     this.getProducts();
-  }
-
-
-  checkProduct(productID){
-    let cart = this.state.cart;
-    return cart.some(function(item) {
-      return item.id === productID;
-    }); 
   }
 
   handleAddToCart (product) {
@@ -76,7 +67,7 @@ class App extends React.Component {
     let cart = this.state.cart;
 
     for (var i=0; i<cart.length; i++) {
-        total += cart[i].price * parseInt(cart[i].quantity);
+        total += cart[i].price * parseInt(cart[i].quantity, 10);
     }
 
     this.setState({
@@ -98,7 +89,7 @@ class App extends React.Component {
 
   handleRemoveProduct(id, e){
     let cart = this.state.cart;
-    let index = cart.findIndex((x => x.id == id));
+    let index = cart.findIndex((x => x.id === id));
     cart.splice(index, 1);
     this.setState({
       cart: cart
