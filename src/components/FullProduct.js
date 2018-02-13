@@ -6,20 +6,36 @@ import ProductDetails from './ProductDetails';
 import Button from './Button';
 
 class FullProduct extends React.Component {
-    constructor (props) {
-      super(props)
+  constructor (props) {
+    super(props)
 
-      this.state = {
-        product :  this.props.products.get(this.props.match.params.id)
-      }
+    this.state = {
+      product :  this.props.products.get(this.props.match.params.id),
+      cart: {}
     }
+  }
+
+  addToCart (product) {
+    const { cart } = this.state
+    product = {...product}
+    console.log(product);
+    console.log(cart);  
+
+    this.setState({
+      cart: {
+        products: [...cart.products, product]
+      }
+    }, function(){
+        this.props.addToCart(product);
+    })
+  }
 
   render() {
     const { product } = this.state;
 
     return product ? (
       <div className="full-product">
-        <Product key={product.name} product={product}>
+        <Product key={product.id+product.sku} product={product}>
           <div className="info">
             <h4>Detalhes:</h4>
             <ol className="details-list">
@@ -34,12 +50,12 @@ class FullProduct extends React.Component {
           </div>
 
           <div className="compra">
-             <Button>Comprar</Button>
+             <Button onClick={this.addToCart.bind(product)}>Comprar</Button>
           </div>
         </Product>
       </div>
     ) : (
-      <div>Error: Product doesn't exist</div>
+      <div>Erro: Produto não encontrado</div>
     );
   }
 }

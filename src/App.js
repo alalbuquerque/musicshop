@@ -22,8 +22,11 @@ class App extends React.Component {
       totalAmount: 0, 
     }
 
-    this.addCart = this.addCart.bind(this)
-    this.removeCart = this.removeCart.bind(this)
+
+    this.handleAddToCart = this.handleAddToCart.bind(this);
+    this.sumTotalItems = this.sumTotalItems.bind(this);
+    this.sumTotalAmount = this.sumTotalAmount.bind(this);
+    this.checkProduct = this.checkProduct.bind(this);
   }
 
   getProducts(){
@@ -36,17 +39,57 @@ class App extends React.Component {
     this.getProducts();
   }
 
-  //cart
-  addCart (product) {
-    const { cart } = this.state
-    product = {...product}
 
+  checkProduct(productID){
+    let cart = this.state.cart;
+    return cart.some(function(item) {
+      return item.id === productID;
+    }); 
+  }
+
+  handleAddToCart (product) {
+    const cart = this.state.cart;
+    const productID = product.id;
+  
+    if(this.checkProduct(productID)){
+      this.setState({
+        cart: cart
+      })
+    } else {
+      cart.push(product);
+    }
+  
     this.setState({
-      cart: {
-        products: [...cart.products, product]
-      }
+      cart : cart
+    });
+
+    this.sumTotalItems(this.state.cart);
+    this.sumTotalAmount(this.state.cart);
+  }
+
+  sumTotalItems () {
+    let total = 0;
+    const cart = this.state.cart;
+
+    total = cart.length;
+    this.setState({
+      totalItems: total
     })
   }
+
+  sumTotalAmount () {
+    let total = 0;
+    const cart = this.state.cart;
+
+    for (var i=0; i<cart.length; i++) {
+        total += cart[i].price * parseInt(cart[i].quantity);
+    }
+
+    this.setState({
+      totalAmount: total
+    })
+  }
+  
   
   removeCart (productId) {
       const { cart } = this.state
@@ -93,10 +136,23 @@ class App extends React.Component {
     	  <div>
           <Header cart={cart} />
     	    <main>
-           <Route exact path="/" render={(props) => <ProductList {...props} cart={cart} products={products} />} />
-           <Route path="/produto/:id"  render={(props) => <FullProduct {...props} products={products} getProductInfo={this.getProduct}  />} />
-           <Route path="/carrinho"  render={(props) => <Cart {...props} cart={cart}  triggerCart={this.removeCart}/>} />
-           <Route path="/finalizando"  render={(props) => <Checkout {...props} cart={cart} />} />
+            <Route 
+              exact 
+              path="/" 
+              render={(props) => <ProductList {...props} cart={cart} products={products} />} 
+            />
+           <Route 
+              path="/produto/:id"  
+              render={(props) => <FullProduct {...props} products={products} addToCart={this.handleAddToCart}  />} 
+            />
+           <Route 
+              path="/carrinho"  
+              render={(props) => <Cart {...props} cart={cart}  triggerCart={this.removeCart}/>} 
+            />
+           <Route 
+              path="/finalizando"  
+              render={(props) => <Checkout {...props} cart={cart} />} 
+            />
     	    </main>
     	  </div>
       </Router>
