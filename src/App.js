@@ -48,21 +48,15 @@ class App extends React.Component {
   }
 
   handleAddToCart (product) {
-    let cart = this.state.cart;
-    let productID = product.id;
-  
-    if(this.checkProduct(productID)){
-      this.setState({
-        cart: cart
-      })
-    } else {
-      cart.push(product);
-    }
-  
-    this.setState({
-      cart : cart
-    });
+    let { cart } = this.state
+    product = {...product}
 
+    this.setState({
+      cart: {
+        products: [...cart.products, product]
+      }
+    })
+    
     this.sumTotalItems(this.state.cart);
     this.sumTotalAmount(this.state.cart);
   }
@@ -113,7 +107,7 @@ class App extends React.Component {
     this.sumTotalAmount(this.state.cart);
     e.preventDefault();
   }
-  
+
   checkout (amount) {
     amount = Math.round(amount * 100)
 
@@ -155,7 +149,7 @@ class App extends React.Component {
             />
            <Route 
               path="/produto/:id"  
-              render={(props) => <FullProduct {...props} cart={cart} products={products} addToCart={this.handleAddToCart}  />} 
+              render={(props) => <FullProduct {...props} products={products} addToCart={this.handleAddToCart}  />} 
             />
            <Route 
               path="/carrinho"  

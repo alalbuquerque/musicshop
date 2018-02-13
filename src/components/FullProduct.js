@@ -8,22 +8,18 @@ import Button from './Button';
 class FullProduct extends React.Component {
   constructor (props) {
     super(props)
-
-    console.log(this.props)
+    
+    this.addToCart = this.addToCart.bind(this)
 
     this.state = {
-      product :  this.props.products.get(this.props.match.params.id),
-      cart: {
-        products : []
-      }
+      product :  this.props.products.get(this.props.match.params.id)
     }
+
   }
 
   addToCart (product) {
     const { cart } = this.state
     product = {...product}
-    console.log(product);
-    console.log(cart);  
 
     this.setState({
       cart: {
@@ -54,7 +50,7 @@ class FullProduct extends React.Component {
           </div>
 
           <div className="compra">
-             <Button onClick={this.addToCart.bind(product)}>Comprar</Button>
+             <Button onClick={() => this.addToCart.bind(product)}>Comprar</Button>
           </div>
         </Product>
       </div>

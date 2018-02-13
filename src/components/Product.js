@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Product = ({product, children, onClick}) => (
   <div className="item" onClick={onClick}>
-	  	<h2 className="title">{product.name} -  {product.vendor.name}</h2>
+	  	<h2 className="title">{product.name} - {product.vendor.name}</h2>
       	<div className="product-details">
       		<div className="details">
       			<img src={require("../images/album-photo.jpg")} />
