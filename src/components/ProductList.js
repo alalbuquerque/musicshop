@@ -2,25 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Product from './Product';
-import ProductDetails from './ProductDetails';
-
-import Button from './Button';
-import Modal from './Modal';
 
 const ProductList = ({cart, products}) => (
     <div className="product-list">
-        <div className="list">
-          {
-            products.all().map(product => (
-                <Link to={{pathname: `produto/${product.id}`, query: { id: product.id }}}>
-                  <Product
-                    key={product.id}
-                    product={product}
-                  />
-                </ Link>
-            ))
-          }
-        </div>
+      <div className="list">
+        {
+          products.all().map(product => (
+            <Link to={{pathname: `produto/${product.id}`, query: { id: product.id }}}>
+              <Product key={product.id} product={product} />
+            </ Link>
+          ))
+        }
+      </div>
   </div>
 ) 
 
@@ -29,6 +22,5 @@ ProductList.propTypes = {
   products: PropTypes.object.isRequired,
   modalProduct: PropTypes.object.isRequired
 }
-
 
 export default ProductList
