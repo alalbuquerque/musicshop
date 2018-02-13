@@ -72,4 +72,4 @@ $ yarn start
 
 ## Automatic Tasks
 
-- `$ yarn start:` Watch the files to build and start a static server.
+- `$ yarn start` Watch the files to build and start a static server.
