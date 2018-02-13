@@ -11,7 +11,11 @@ class FullProduct extends React.Component {
     this.addToCart = this.addToCart.bind(this)
 
     this.state = {
-      product :  this.props.products.get(parseInt(this.props.match.params.id, 10))
+      product :  this.props.products.get(parseInt(this.props.match.params.id, 10)),
+      products: [],
+      cart: {
+        products: []
+      }
     }
 
   }
@@ -24,22 +28,19 @@ class FullProduct extends React.Component {
       cart: {
         products: [...cart.products, product]
       }
-    }, function(){
-        this.props.addToCart(product);
     })
   }
 
 
   render() {
     const { product } = this.state;
-  console.log(this.props)
 
     return product ? (
       <div className="full-product">
 
         <div className="breadcrumb">
           <p>
-            <Link to="/" activeClassName="active">Home</Link>> {product.name}
+            <Link to="/" className="active">Home</Link>> {product.name}
           </p>
         </div>
         <br />
@@ -58,7 +59,7 @@ class FullProduct extends React.Component {
           </div>
 
           <div className="compra">
-             <Button onClick={() => this.addToCart.bind(product)}>Comprar</Button>
+            <Button onClick={() => this.addToCart(product)}>Comprar</Button>
           </div>
         </Product>
       </div>

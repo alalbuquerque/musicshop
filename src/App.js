@@ -10,8 +10,8 @@ import Checkout from './components/Checkout';
 
 
 class App extends React.Component {  
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
 
     this.state = {
       products: [],
@@ -39,15 +39,14 @@ class App extends React.Component {
   }
 
   handleAddToCart (product) {
-    let { cart } = this.state
-    product = {...product}
+    const { cart } = this.state
 
     this.setState({
       cart: {
-        products: [...cart.products, product]
+        ...cart
       }
     })
-    
+
     this.sumTotalItems(this.state.cart);
     this.sumTotalAmount(this.state.cart);
   }
