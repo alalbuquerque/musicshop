@@ -17,12 +17,12 @@
         margin: 16px;
         padding: 16px;
         width: 250px;
-        height: 210px;
+        height: 230px;
         cursor: pointer;
         display: flex;
         text-align: center;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: space-around;
         transition: all 0.3s cubic-bezier(.25,.8,.25,1);
             
         &:hover {
@@ -43,7 +43,7 @@
         .price {
             align-self: center;
             display: block;
-            margin: 8px auto 16px;            
+            margin: 16px auto 0;            
             font-size: 16px;
             font-weight: 600;
         }
