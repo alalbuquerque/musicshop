@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Product from './Product';
 import ProductDetails from './ProductDetails';
@@ -10,6 +9,7 @@ import Button from './Button';
 class FullProduct extends React.Component {
   render() {
     const { products, location } = this.props;
+    console.log(this.props);
     const product = products.get(this.props.match.params.id);
 
     if (!products.length && !location) {
@@ -45,30 +45,5 @@ class FullProduct extends React.Component {
   }
 }
 
-/*const FullProduct = ({products}) => (
-  var product= data.find(p => p.id == match.params.productId);
-  var productData;
-
-    if(product)
-    productData = <div>
-
-  </div>
-  else
-    productData = <h2> Sorry. Product doesnt exist </h2>;
-
-    return (
-      <div>
-        <div>
-           {productData}
-        </div>
-      </div>
-    )    
-  }
-)
-
-FullProduct.propTypes = {
-  product: PropTypes.object.isRequired
-}
-*/
 export default FullProduct
           
