@@ -4,7 +4,9 @@ import Product from './Product';
 import Button from './Button';
 import FaCart from 'react-icons/lib/md/shopping-cart';
 
-const Cart = ({products, remove}) => {
+const Cart = ({cart, remove}) => {
+  const products = cart.products;
+
   const total = products.map(product => product.price).reduce((previousPrice, currentPrice) => previousPrice + currentPrice, 0)
 
   return (
@@ -18,7 +20,7 @@ const Cart = ({products, remove}) => {
             {
             products.map(product => (
                 <Product key={product.id} product={product}>
-                <button onClick={this.props.triggerCart(product.id)} className="remove">&times;</button>
+                  <button className="remove">&times;</button>
                 </Product>
             ))
             }

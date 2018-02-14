@@ -20,10 +20,9 @@ class App extends React.Component {
       },
       totalItems: 0,
       totalAmount: 0, 
+      checked: false
     }
 
-
-    this.handleAddToCart = this.handleAddToCart.bind(this);
     this.sumTotalItems = this.sumTotalItems.bind(this);
     this.sumTotalAmount = this.sumTotalAmount.bind(this);
   }
@@ -38,18 +37,17 @@ class App extends React.Component {
     this.getProducts();
   }
 
-  handleAddToCart (product) {
+  handleAddToCart(product) {    
     const { cart } = this.state
 
     this.setState({
       cart: {
-        ...cart
+        products: [...cart.products, product]
       }
     })
-
-    this.sumTotalItems(this.state.cart);
-    this.sumTotalAmount(this.state.cart);
   }
+
+
 
   sumTotalItems () {
     let total = 0;
@@ -135,15 +133,29 @@ class App extends React.Component {
             <Route 
               exact 
               path="/" 
-              render={(props) => <ProductList {...props} cart={cart} products={products} />} 
+              render={(props) => <ProductList {...props} 
+                cart={cart} 
+                products={products} 
+              />} 
             />
            <Route 
               path="/produto/:id"  
-              render={(props) => <FullProduct {...props} products={products} addToCart={this.handleAddToCart}  />} 
+              render={(props) => <FullProduct {...props} 
+                cart={cart} 
+                products={products} 
+                handleAddToCart={this.handleAddToCart} 
+                text="Toggle me"
+                initialChecked={this.state.checked}
+                callbackParent={(product) => this.handleAddToCart(product)}
+              />} 
             />
            <Route 
               path="/carrinho"  
-              render={(props) => <Cart {...props} cart={cart}  removeToCart={this.removeCart}/>} 
+              render={(props) => <Cart {...props} 
+                cart={cart} 
+                products={products}  
+                removeToCart={this.removeCart}/>
+              } 
             />
            <Route 
               path="/finalizando"  

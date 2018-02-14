@@ -8,14 +8,9 @@ class FullProduct extends React.Component {
   constructor (props) {
     super(props)
 
-    this.addToCart = this.addToCart.bind(this)
-
     this.state = {
       product :  this.props.products.get(parseInt(this.props.match.params.id, 10)),
-      products: [],
-      cart: {
-        products: []
-      }
+      cart: this.props.cart
     }
 
   }
@@ -23,14 +18,14 @@ class FullProduct extends React.Component {
   addToCart (product) {
     const { cart } = this.state
     product = {...product}
-
+    
     this.setState({
       cart: {
         products: [...cart.products, product]
       }
     })
+    this.props.callbackParent(product);
   }
-
 
   render() {
     const { product } = this.state;
