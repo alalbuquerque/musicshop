@@ -31,7 +31,7 @@ class Cart extends React.Component {
 
 
   checkout (amount) {
-    amount = Math.round(amount * 100)
+    amount = (amount/100).toFixed(2)
 
     var checkout = new window.PagarMeCheckout.Checkout({"encryption_key":"ak_test_H7L68aHLEZNOxGBSJQ6CcQ1pBhEbvt", 
       success: function(data) {
@@ -40,6 +40,8 @@ class Cart extends React.Component {
           console.log(err);
       }
     });
+    
+    console.log(amount);
     var params = {
       "amount": amount,
       "buttonText":"Pagar", 
