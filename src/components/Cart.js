@@ -33,8 +33,6 @@ class Cart extends React.Component {
   checkout (amount) {
     amount = Math.round(amount * 100)
 
-    // INICIAR A INSTÂNCIA DO CHECKOUT
-    // declarando um callback de sucesso
     var checkout = new window.PagarMeCheckout.Checkout({"encryption_key":"ak_test_H7L68aHLEZNOxGBSJQ6CcQ1pBhEbvt", 
       success: function(data) {
         console.log(data);
@@ -44,28 +42,42 @@ class Cart extends React.Component {
     });
     var params = {
       "amount": amount,
-      "buttonText":"Pagar",
-      "customerData":true,
+      "buttonText":"Pagar", 
+      "customer": {
+          "address": {
+              "neighborhood": "Jardim Paulistano", 
+              "street": "Avenida Brigadeiro Faria Lima", 
+              "street_number": "1811", 
+              "zipcode": "01451001"
+          }, 
+          "document_number": "18152564000105", 
+          "email": "aardvark.silva@pagar.me", 
+          "name": "Aardvark Silva", 
+          "phone": {
+              "ddd": "11", 
+              "ddi": "55", 
+              "number": "99999999"
+          }
+      }, 
+      "metadata": {
+          "idProduto": "13933139"
+      }, 
       "payment_method": "boleto", 
       "postback_url": "http://requestb.in/pkt7pgpk",
-      "customer":{
-        "name":"Aardvark da Silva",
-        "document_number":"18152564000105"
-      },
       "split_rules": [
-      {
-        "recipient_id": 're_civb4p9l7004xbm6dhsetkpj8',
-        "percentage": 50,
-        "liable": true,
-        "charge_processing_fee": true
-      },
-      {
-        "recipient_id": 're_civb4o6zr003u3m6e8dezzja6',
-        "percentage": 50,
-        "liable": false,
-        "charge_processing_fee": true
-      }
-    ]
+        {
+          "recipient_id": 're_civb4p9l7004xbm6dhsetkpj8',
+          "percentage": 50,
+          "liable": true,
+          "charge_processing_fee": true
+        },
+        {
+          "recipient_id": 're_civb4o6zr003u3m6e8dezzja6',
+          "percentage": 50,
+          "liable": false,
+          "charge_processing_fee": true
+        }
+      ]
     };
 
     checkout.open(params);
@@ -97,7 +109,7 @@ class Cart extends React.Component {
           <div className="total">
               <div className="cart-price">
               <p>
-                  Total: <strong>R$ {total}</strong>
+                  Total: <strong>R$ {(total/100).toFixed(2).replace('.', ',')}</strong>
               </p>
               </div>
               <Button className="finalizar" onClick={() => this.checkout(total)} disabled={(total <= 0) && 'disabled'}>Finalizar compra</Button>

@@ -7,7 +7,7 @@ const Product = ({product, children, onClick}) => (
       	<div className="product-details">
       		<div className="details">
       			<img alt={product.name} src={require("../images/album-photo.jpg")} />
-      			<strong className="price">R$ {product.price}</strong>
+      			<strong className="price">R$ {(product.price/100).toFixed(2).replace('.', ',')}</strong>
       		</div>
 	    	<div className="album-details">
 		  		{children}
