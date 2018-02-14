@@ -65,7 +65,6 @@ class App extends React.Component {
               render={(props) => <ProductList {...props} 
                 cart={cart} 
                 products={products} 
-                callbackRemoveCart={(product) => this.handleRemoveToProduct(product)}
               />} 
             />
            <Route 
@@ -81,7 +80,7 @@ class App extends React.Component {
               render={(props) => <Cart {...props} 
                 cart={cart} 
                 products={products}  
-                removeToCart={this.removeCart}/>
+                callbackRemoveCart={(product) => this.handleRemoveToProduct(product)}/>
               } 
             />
     	    </main>
