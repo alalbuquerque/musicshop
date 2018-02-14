@@ -27,7 +27,7 @@ class Cart extends React.Component {
       }
     })
 
-    this.props.callbackParent(product);
+    this.props.callbackRemoveCart(product);
   }
 
 
@@ -68,7 +68,7 @@ class Cart extends React.Component {
   }
 
   render() {
-    const { product, cart } = this.state;
+    const { cart } = this.state;
     const products = cart.products;
     const total = products.map(product => product.price).reduce((previousPrice, currentPrice) => previousPrice + currentPrice, 0)
     
@@ -84,10 +84,9 @@ class Cart extends React.Component {
               products.map(product => (
                 <div className="item-carrinho">
                   <Link to={{pathname: `produto/${product.id}`, query: { id: product.id }}}>
-                    <Product key={product.name} product={product}>
-                      </Product>
+                    <Product key={product.id} product={product} />
                   </Link>
-                  <Button onClick={(product) => this.removeCart(product)} className="remove">&times;</Button>
+                  <Button onClick={() => this.removeCart(product)} className="remove">&times;</Button>
                 </div>  
               ))
               }

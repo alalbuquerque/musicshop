@@ -25,7 +25,7 @@ class FullProduct extends React.Component {
         products: [...cart.products, product]
       }
     })
-    this.props.callbackParent(product);
+    this.props.callbackAddCart(product);
   }
 
   render() {
@@ -40,7 +40,7 @@ class FullProduct extends React.Component {
           </p>
         </div>
 
-        <Product key={product.id+product.sku} product={product}>
+        <Product key={product.id} product={product}>
           <div className="informacoes">
             <h4>Detalhes do Álbum:</h4>
             <ol className="details-list">
