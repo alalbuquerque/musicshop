@@ -7,9 +7,9 @@ import Product from './Product';
 const ProductList = ({cart, products}) => (
   <div className="lista-produtos">
     {
-      products.all().map(product => (
+      products.all().map((product, index) => (
         <Link to={{pathname: `produto/${product.id}`, query: { id: product.id }}}>
-          <Product key={product.id} product={product} />
+          <Product key={index} product={product} />
         </ Link>
       )
     )}
