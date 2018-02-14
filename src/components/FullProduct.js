@@ -36,12 +36,12 @@ class FullProduct extends React.Component {
 
         <div className="breadcrumb">
           <p>
-            <Link to="/" className="active">Home</Link>> {product.name}
+            <Link to="/" className="active">Home</Link> / {product.name}
           </p>
         </div>
-        <br />
+
         <Product key={product.id+product.sku} product={product}>
-          <div className="info">
+          <div className="informacoes">
             <h4>Detalhes:</h4>
             <ol className="details-list">
                 {

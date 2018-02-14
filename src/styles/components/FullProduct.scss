@@ -1,60 +1,73 @@
 .full-product {
-    padding: 40px 50px 0;
+    padding: 0 50px;
     background: #fafafa;
-    .item {
-        h2 {
-            font-size: 24px;
-            margin-bottom: 8px;
+    
+    .breadcrumb {        
+        margin: 16px 0;
+        p {
+            font-size: 18px;
         }
-        .details {
+
+        a {
+            text-decoration: none;
+            color: #F00;
+        }
+    }
+    .titulo {
+        font-size: 24px;
+        margin-bottom: 16px;
+        margin-top: 24px;
+    }
+
+    .detalhes-produto {
+        display: flex;
+        justify-content: space-between;
+     
+        .detalhes {
             display: flex;
             flex-direction: column-reverse;
             justify-content: flex-end;
         }
 
-    }
-
-    .product-details {
-        display: flex;
-        justify-content: space-between;
-        
-        .price {
-            font-size: 24px;
+        .valor {
+            margin-bottom: 16px;
+            font-size: 30px;
             font-weight: bold;
         }
-        .album-details {    
-            width: 50%;
-            margin-top: 22px;
-        }
     }
-    .info {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        height: calc(100% - 130px);
-        background: #f6f6f6;
-        border-radius: 4px;
-        padding: 16px 24px;
+
+    .detalhes-album {    
+        width: 50%;
+        margin-top: 22px;
+        .informacoes {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: calc(100% - 130px);
+            background: #f6f6f6;
+            border-radius: 4px;
+            padding: 16px 24px;
+        }
         h4 {
             margin-bottom: 8px;
-            font-size: 16px;
+            font-size: 20px;
+            font-weight:  bold;
+        }
+        .compra {
+            align-self: flex-end;
+            text-align: center;
+            
+
+            .button {
+                background: #ff4651;
+                color: #ffffff;
+                padding: 16px 62px;
+                margin: 24px auto;
+                font-size: 18px;
+                border-radius: 38px;
+                font-weight: bold;
+            }
         }
     }
-    .compra {
-        align-self: flex-end;
-        text-align: center;
-        
-
-        .button {
-            background: #ff4651;
-            color: #ffffff;
-            padding: 16px 62px;
-            margin: 24px auto;
-            font-size: 18px;
-            border-radius: 38px;
-            font-weight: bold;
-        }
-    }
-
 }
 
