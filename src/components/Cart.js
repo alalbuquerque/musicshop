@@ -29,6 +29,49 @@ class Cart extends React.Component {
     this.props.callbackParent(product);
   }
 
+
+  checkout (amount) {
+    amount = Math.round(amount * 100)
+
+    // INICIAR A INSTÂNCIA DO CHECKOUT
+    // declarando um callback de sucesso
+    var checkout = new window.PagarMeCheckout.Checkout({"encryption_key":"ak_test_H7L68aHLEZNOxGBSJQ6CcQ1pBhEbvt", 
+      success: function(data) {
+        console.log(data);
+      }, error: function(err) {
+          console.log(err);
+      }
+    });
+    var params = {
+      "amount": amount,
+      "buttonText":"Pagar",
+      "customerData":true,
+      "payment_method": "boleto", 
+      "postback_url": "http://requestb.in/pkt7pgpk",
+      "customer":{
+        "name":"Aardvark da Silva",
+        "document_number":"18152564000105"
+      },
+      "split_rules": [
+      {
+        "recipient_id": 're_civb4p9l7004xbm6dhsetkpj8',
+        "percentage": 50,
+        "liable": true,
+        "charge_processing_fee": true
+      },
+      {
+        "recipient_id": 're_civb4o6zr003u3m6e8dezzja6',
+        "percentage": 50,
+        "liable": false,
+        "charge_processing_fee": true
+      }
+    ]
+    };
+
+    checkout.open(params);
+
+  }
+
   render() {
     const { product, cart } = this.state;
     const products = cart.products;
@@ -45,7 +88,7 @@ class Cart extends React.Component {
               {
               products.map(product => (
                   <Product key={product.id} product={product}>
-                    <Button onClick={() => this.removeCart(product)} className="remove">&times;</Button>
+                    <Button onClick={(product) => this.removeCart(product)} className="remove">&times;</Button>
                   </Product>
               ))
               }
@@ -57,7 +100,7 @@ class Cart extends React.Component {
                   Total: <strong>R$ {total}</strong>
               </p>
               </div>
-              <Button className="finalizar" disabled={(total <= 0) && 'disabled'}>Finalizar compra</Button>
+              <Button className="finalizar" onClick={() => this.checkout(total)} disabled={(total <= 0) && 'disabled'}>Finalizar compra</Button>
           </div>
         </div>
       </div>

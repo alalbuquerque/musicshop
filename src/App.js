@@ -17,14 +17,8 @@ class App extends React.Component {
       products: [],
       cart: {
         products: []
-      },
-      totalItems: 0,
-      totalAmount: 0, 
-      checked: false
+      }
     }
-
-    this.sumTotalItems = this.sumTotalItems.bind(this);
-    this.sumTotalAmount = this.sumTotalAmount.bind(this);
   }
 
   getProducts(){
@@ -47,47 +41,21 @@ class App extends React.Component {
     })
   }
 
-  
   handleRemoveToProduct (product) {
-      const { cart } = this.state
-
-      this.setState({
-        cart: {
-          ...cart,
-          products: cart.products.filter(p => p.id !== product.id)
-        }
-      })
-  }
-
-  sumTotalItems () {
-    let total = 0;
-    let cart = this.state.cart;
-
-    total = cart.length;
-    this.setState({
-      totalItems: total
-    })
-  }
-
-  sumTotalAmount () {
-    let total = 0;
-    let cart = this.state.cart;
-
-    for (var i=0; i<cart.length; i++) {
-        total += cart[i].price * parseInt(cart[i].quantity, 10);
-    }
+    const { cart } = this.state
 
     this.setState({
-      totalAmount: total
+      cart: {
+        ...cart,
+        products: cart.products.filter(p => p.id !== product.id)
+      }
     })
   }
-  
-
 
   checkout (amount) {
     amount = Math.round(amount * 100)
 
-    const checkout = new window.PagarMeCheckout.Checkout({
+    /*const checkout = new window.PagarMeCheckout.Checkout({
       encryption_key: process.env.REACT_APP_ENC_KEY,
       success: transaction => {
         console.log(transaction);
@@ -106,12 +74,12 @@ class App extends React.Component {
       freeInstallments: 12,
       defaultInstallment: 5,
       headerText: 'Finalizar compra.'
-    })
+    })*/
   }
 
   render () {
     
-    const { cart, products } = this.state
+    const { cart, products, total } = this.state
     
     return ( 
       <Router> 
@@ -145,7 +113,10 @@ class App extends React.Component {
             />
            <Route 
               path="/finalizando"  
-              render={(props) => <Checkout {...props} cart={cart} />} 
+              render={(props) => <Checkout {...props} 
+                cart={cart} 
+                callbackParent={(product) => this.handleAddToCart(product)}
+              />} 
             />
     	    </main>
     	  </div>
