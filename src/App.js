@@ -47,7 +47,17 @@ class App extends React.Component {
     })
   }
 
+  
+  handleRemoveToProduct (product) {
+      const { cart } = this.state
 
+      this.setState({
+        cart: {
+          ...cart,
+          products: cart.products.filter(p => p.id !== product.id)
+        }
+      })
+  }
 
   sumTotalItems () {
     let total = 0;
@@ -72,29 +82,7 @@ class App extends React.Component {
     })
   }
   
-  
-  removeCart (productId) {
-      const { cart } = this.state
 
-      this.setState({
-        cart: {
-          ...cart,
-          products: cart.products.filter(product => product.id !== productId)
-        }
-      })
-  }
-
-  handleRemoveProduct(id, e){
-    let cart = this.state.cart;
-    let index = cart.findIndex((x => x.id === id));
-    cart.splice(index, 1);
-    this.setState({
-      cart: cart
-    })
-    this.sumTotalItems(this.state.cart);
-    this.sumTotalAmount(this.state.cart);
-    e.preventDefault();
-  }
 
   checkout (amount) {
     amount = Math.round(amount * 100)
@@ -136,6 +124,7 @@ class App extends React.Component {
               render={(props) => <ProductList {...props} 
                 cart={cart} 
                 products={products} 
+                callbackParent={(product) => this.handleRemoveToProduct(product)}
               />} 
             />
            <Route 
@@ -143,9 +132,6 @@ class App extends React.Component {
               render={(props) => <FullProduct {...props} 
                 cart={cart} 
                 products={products} 
-                handleAddToCart={this.handleAddToCart} 
-                text="Toggle me"
-                initialChecked={this.state.checked}
                 callbackParent={(product) => this.handleAddToCart(product)}
               />} 
             />
