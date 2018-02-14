@@ -5,6 +5,7 @@ header {
     width: calc(100% - 68px);
     height: auto;
     background: #000000;
+    z-index: 9;
 
     h1 {
         font-family: 'Play', sans-serif;
@@ -39,9 +40,32 @@ header {
     }
 
     .carrinho {
-        span {
+        cursor: pointer;
+        .icon {
             color: #fd444d;
             font-size: 32px;  
+            position: relative;
+        }
+
+        .badge {
+            display: none;
+            position: absolute;
+            top: -13px;
+            right: -13px;
+            background-color: #FFFF00;
+            color: #000000;
+            border-radius: 50%;
+            line-height: 1;
+            font-size: 14px;
+            width: 20px;
+            height: 20px;
+            justify-content: center;
+            align-items: center;
+            padding: 4px;
+
+            &.active {
+                display: flex;
+            }
         }
     }
 }
