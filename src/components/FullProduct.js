@@ -11,7 +11,8 @@ class FullProduct extends React.Component {
 
     this.state = {
       product :  this.props.products.get(parseInt(this.props.match.params.id, 10)),
-      cart: this.props.cart
+      cart: this.props.cart, 
+      index: this.props.match.params.id
     }
 
   }
@@ -29,7 +30,7 @@ class FullProduct extends React.Component {
   }
 
   render() {
-    const { product } = this.state;
+    const { product, index } = this.state;
 
     return product ? (
       <div className="full-product">
@@ -40,13 +41,13 @@ class FullProduct extends React.Component {
           </p>
         </div>
 
-        <Product key={product.id} product={product}>
+        <Product key={index} product={product}>
           <div className="informacoes">
             <h4>Detalhes do Álbum:</h4>
             <ol className="details-list">
                 {
-                  product.details.map((p, key) => (
-                      <li key={p.album_id}>
+                  product.details.map((p, index) => (
+                      <li key={index}>
                         <ProductDetails product={p} />
                       </li>
                   ))
