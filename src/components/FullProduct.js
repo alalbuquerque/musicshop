@@ -42,7 +42,7 @@ class FullProduct extends React.Component {
 
         <Product key={product.id+product.sku} product={product}>
           <div className="informacoes">
-            <h4>Detalhes:</h4>
+            <h4>Detalhes do Álbum:</h4>
             <ol className="details-list">
                 {
                   product.details.map((p, key) => (

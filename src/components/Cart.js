@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Product from './Product';
 import Button from './Button';
@@ -81,9 +82,13 @@ class Cart extends React.Component {
           <div className="lista-produtos">
               {
               products.map(product => (
-                  <Product key={product.name} product={product}>
-                    <Button onClick={(product) => this.removeCart(product)} className="remove">&times;</Button>
-                  </Product>
+                <div className="item-carrinho">
+                  <Link to={{pathname: `produto/${product.id}`, query: { id: product.id }}}>
+                    <Product key={product.name} product={product}>
+                      </Product>
+                  </Link>
+                  <Button onClick={(product) => this.removeCart(product)} className="remove">&times;</Button>
+                </div>  
               ))
               }
           </div>
