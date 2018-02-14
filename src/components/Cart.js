@@ -40,29 +40,10 @@ class Cart extends React.Component {
           console.log(err);
       }
     });
-    
+
     var params = {
       "amount": amount,
       "buttonText":"Pagar", 
-      "customer": {
-          "address": {
-              "neighborhood": "Jardim Paulistano", 
-              "street": "Avenida Brigadeiro Faria Lima", 
-              "street_number": "1811", 
-              "zipcode": "01451001"
-          }, 
-          "document_number": "18152564000105", 
-          "email": "aardvark.silva@pagar.me", 
-          "name": "Aardvark Silva", 
-          "phone": {
-              "ddd": "11", 
-              "ddi": "55", 
-              "number": "99999999"
-          }
-      }, 
-      "metadata": {
-          "idProduto": "13933139"
-      }, 
       "payment_method": "boleto", 
       "postback_url": "http://requestb.in/pkt7pgpk",
       "split_rules": [
@@ -91,16 +72,16 @@ class Cart extends React.Component {
     const total = products.map(product => product.price).reduce((previousPrice, currentPrice) => previousPrice + currentPrice, 0)
     
     return (
-      <div className="cart">
-        <div className="header">
+      <div className="carrinho">
+        <div className="topo">
           <h3>Carrinho <FaCart /></h3>
         </div>
-        <div className="products-container">  
+        <div className="box-produtos">  
           <h4>{products.length ? `Lista (${products.length})` : 'Seu carrinho está vazio :('}</h4>
-          <div className="products">
+          <div className="lista-produtos">
               {
               products.map(product => (
-                  <Product key={product.id} product={product}>
+                  <Product key={product.name} product={product}>
                     <Button onClick={(product) => this.removeCart(product)} className="remove">&times;</Button>
                   </Product>
               ))
@@ -108,10 +89,8 @@ class Cart extends React.Component {
           </div>
 
           <div className="total">
-              <div className="cart-price">
-              <p>
-                  Total: <strong>R$ {(total/100).toFixed(2).replace('.', ',')}</strong>
-              </p>
+              <div className="valor-carrinho">
+                <p>Total: <strong>R$ {(total/100).toFixed(2).replace('.', ',')}</strong></p>
               </div>
               <Button className="finalizar" onClick={() => this.checkout(total)} disabled={(total <= 0) && 'disabled'}>Finalizar compra</Button>
           </div>

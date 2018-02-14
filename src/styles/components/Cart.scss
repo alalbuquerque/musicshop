@@ -1,8 +1,8 @@
-.cart {
+.carrinho {
     height: 100%;
 
     background: #ffffff;
-    .header {
+    .topo {
         padding: 16px;
         height: 61px;
 
@@ -16,14 +16,14 @@
             color: #FF0000;
         }
     }
-    .products-container { 
+    .box-produtos { 
         padding: 16px 0;
         height: 100%;
-        
+
         text-align: center;
         background: #fafafa;
     }
-    .products {    
+    .lista-produtos {    
         padding: 8px;
         width: calc(100% - 550px);
         margin: 0 auto;
@@ -86,7 +86,7 @@
         height: 150px;
         width: 100%;
         text-align: center;
-        .cart-price {
+        .valor-carrinho {
             background: #eaeaea;
             padding: 20px;
             text-align: right;
