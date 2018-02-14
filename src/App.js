@@ -6,8 +6,6 @@ import Header from './components/Header';
 import Cart from './components/Cart';
 import ProductList from './components/ProductList';
 import FullProduct from './components/FullProduct';
-import Checkout from './components/Checkout'; 
-
 
 class App extends React.Component {  
   constructor (props) {
@@ -52,34 +50,9 @@ class App extends React.Component {
     })
   }
 
-  checkout (amount) {
-    amount = Math.round(amount * 100)
-
-    /*const checkout = new window.PagarMeCheckout.Checkout({
-      encryption_key: process.env.REACT_APP_ENC_KEY,
-      success: transaction => {
-        console.log(transaction);
-      }
-    })
-
-    checkout.open({
-      amount,
-      buttonText: 'Pagar',
-      customerData: 'true',
-      paymentMethods: 'credit_card',
-      maxInstallments: 12,
-      uiColor: '#444444',
-      createToken: 'true',
-      interestRate: 12,
-      freeInstallments: 12,
-      defaultInstallment: 5,
-      headerText: 'Finalizar compra.'
-    })*/
-  }
-
   render () {
     
-    const { cart, products, total } = this.state
+    const { cart, products } = this.state
     
     return ( 
       <Router> 
@@ -110,13 +83,6 @@ class App extends React.Component {
                 products={products}  
                 removeToCart={this.removeCart}/>
               } 
-            />
-           <Route 
-              path="/finalizando"  
-              render={(props) => <Checkout {...props} 
-                cart={cart} 
-                callbackParent={(product) => this.handleAddToCart(product)}
-              />} 
             />
     	    </main>
     	  </div>

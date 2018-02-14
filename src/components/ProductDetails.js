@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ProductDetails = ({product}) => (
-  <div>
+  <div key={product.name}>
       {product.name} 
   </div>
 )

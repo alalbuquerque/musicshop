@@ -41,7 +41,6 @@ class Cart extends React.Component {
       }
     });
     
-    console.log(amount);
     var params = {
       "amount": amount,
       "buttonText":"Pagar", 

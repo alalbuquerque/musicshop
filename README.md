@@ -10,17 +10,17 @@
 
 ```
 musicshop/
-  README.md
-  node_modules/
-  package.json
   public/
     index.html
     favicon.ico
+  scripts/
+    build.js
+    start.js
+    test.js
   src/
     components/
       Button.js
       Cart.js
-      Checkout.js
       FullProduct.js
       Header.js
       Modal.js
@@ -44,6 +44,14 @@ musicshop/
       App.scss
     App.js
     Api.js
+    index.html
+    index.js
+    products.json
+    registerServiceWorker.js
+  README.md
+  package-lock.json
+  package.json
+  yarn-lock
 ```
 
 ## Run the project locally

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
 import Product from './Product';
 
 const ProductList = ({cart, products}) => (
@@ -8,7 +9,7 @@ const ProductList = ({cart, products}) => (
     {
       products.all().map(product => (
         <Link to={{pathname: `produto/${product.id}`, query: { id: product.id }}}>
-          <Product key={product.id} product={product} />
+          <Product key={product.name} product={product} />
         </ Link>
       )
     )}
