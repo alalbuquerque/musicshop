@@ -33,21 +33,19 @@ class FullProduct extends React.Component {
     const { product, index } = this.state;
 
     return product ? (
-      <div className="full-product">
-
+      <div key={index} className="full-product">
         <div className="breadcrumb">
           <p>
             <Link to="/" className="active">Home</Link> / {product.name}
           </p>
         </div>
-
-        <Product key={index} product={product}>
+        <Product product={product}>
           <div className="informacoes">
             <h4>Detalhes do Álbum:</h4>
             <ol className="details-list">
                 {
-                  product.details.map((p, index) => (
-                      <li key={index}>
+                  product.details.map((p, i) => (
+                      <li key={i}>
                         <ProductDetails product={p} />
                       </li>
                   ))

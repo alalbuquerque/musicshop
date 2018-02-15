@@ -9,8 +9,7 @@ const Button = (props) => (
 
 Button.propTypes = {
   children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element
+    PropTypes.node
   ])
 }
 

@@ -9,7 +9,7 @@ const ProductList = ({cart, products}) => (
     {
       products.all().map((product, index) => (
         <Link key={index} to={{pathname: `produto/${product.id}`, query: { id: product.id }}}>
-          <Product key={index} product={product} />
+          <Product  product={product} />
         </ Link>
       )
     )}
