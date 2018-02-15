@@ -55,34 +55,34 @@ class App extends React.Component {
     const { cart, products } = this.state
     
     return ( 
-      <Router> 
-    	  <div>
-          <Header cart={cart} />
-    	    <main>
-            <Route exact path="/" render={(props) => 
-              <ProductList 
-                {...props} 
-                cart={cart} 
-                products={products} 
-              />} 
-            />
-           <Route path="/produto/:id" render={(props) => 
-              <FullProduct {...props} 
-                cart={cart} 
-                products={products} 
-                callbackAddCart={(product) => this.handleAddToCart(product)}
-              />} 
-            />
-           <Route path="/carrinho" render={(props) => 
-              <Cart {...props} 
-                cart={cart} 
-                products={products}  
-                callbackRemoveCart={(product) => this.handleRemoveToProduct(product)}/>
-              } 
-            />
-    	    </main>
-    	  </div>
-      </Router>
+        <Router>
+          <div>
+            <Header cart={cart} />
+            <main>
+              <Route exact path="/" render={(props) => 
+                <ProductList 
+                  {...props} 
+                  cart={cart} 
+                  products={products} 
+                />} 
+              />
+              <Route path="/produto/:id" render={(props) => 
+                <FullProduct {...props} 
+                  cart={cart} 
+                  products={products} 
+                  callbackAddCart={(product) => this.handleAddToCart(product)}
+                />} 
+              />
+              <Route path="/carrinho" render={(props) => 
+                <Cart {...props} 
+                  cart={cart} 
+                  products={products}  
+                  callbackRemoveCart={(product) => this.handleRemoveToProduct(product)}/>
+                } 
+              />
+      	    </main>
+          </div>
+        </Router>
 		)
 	}
 }

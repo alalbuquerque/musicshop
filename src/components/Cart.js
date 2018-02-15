@@ -32,8 +32,6 @@ class Cart extends React.Component {
 
 
   checkout (amount) {
-    amount = (amount/100).toFixed(2)
-
     var checkout = new window.PagarMeCheckout.Checkout({"encryption_key":"ek_test_cSHiLy4gg23jlxgRUMOAZb6UeUOfJb", 
       success: function(data) {
         console.log(data);
