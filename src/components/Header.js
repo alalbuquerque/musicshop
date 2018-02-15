@@ -11,8 +11,20 @@ const Header = ({cart}) => (
       <header>
         <nav>
           <ul>
-            <li><Link to="/"><h1><FaMusic /> music<span>shop</span></h1></Link></li>
-            <li className="carrinho"><Link to="/carrinho">carrinho <span className="icon"><FaCart /> <span className={"badge " + (cart.products.length ? 'active' : '')} >{cart.products.length ? `${cart.products.length}` : ''}</span></span></Link></li>
+            <li>
+              <Link to="/">
+                <h1><FaMusic /> music<span>shop</span></h1>
+              </Link>
+            </li>
+            <li className="carrinho">
+              <Link to="/carrinho">
+                carrinho 
+                <span className="icon">
+                  <FaCart /> 
+                  <span className={"badge " + (cart.products.length ? 'active' : '')} >{cart.products.length ? `${cart.products.length}` : ''}</span>
+                </span>
+              </Link>
+            </li>
           </ul>
         </nav>
       </header>
