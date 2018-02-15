@@ -16,7 +16,7 @@ const Header = ({cart}) => (
               <h1><FaMusic /> music<span>shop</span></h1>
             </Link>
           </li>
-          <li className="icone-carrinho">
+          <li className="carrinho">
             <Link to="/carrinho">
               carrinho 
               <span className="icon">
