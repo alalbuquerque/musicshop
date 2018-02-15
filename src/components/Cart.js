@@ -48,13 +48,19 @@ class Cart extends React.Component {
       "split_rules": [
         {
           "recipient_id": 're_civb4p9l7004xbm6dhsetkpj8',
-          "percentage": 50,
+          "percentage": 60,
           "liable": true,
           "charge_processing_fee": true
         },
         {
           "recipient_id": 're_civb4o6zr003u3m6e8dezzja6',
-          "percentage": 50,
+          "percentage": 25,
+          "liable": false,
+          "charge_processing_fee": true
+        },
+        {
+          "recipient_id": '',
+          "percentage": 15,
           "liable": false,
           "charge_processing_fee": true
         }
