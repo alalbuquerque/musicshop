@@ -33,7 +33,7 @@ class FullProduct extends React.Component {
     const { product, index } = this.state;
 
     return product ? (
-      <div key={index} className="full-product">
+      <div key={index} className="produto-todo">
         <div className="breadcrumb">
           <p>
             <Link to="/" className="active">Home</Link> / {product.name}
