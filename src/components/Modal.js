@@ -14,8 +14,4 @@ Modal.propTypes = {
   children: PropTypes.element.isRequired
 }
 
-Modal.defaultProps = {
-  visible: false
-}
-
 export default Modal
