@@ -89,3 +89,5 @@ $ yarn start
 ## Automatic Tasks
 
 - `$ yarn start` Watch the files to build and start a static server.
+- `$ yarn build` Compile, concat and minify all files.
+- `$ yarn deploy` Deploy for gh-pages.
