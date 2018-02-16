@@ -128,9 +128,9 @@ class Cart extends React.Component {
           <div className="lista-produtos">
               {
               products.map((product, index) => (
-                <div className="item-carrinho">
-                  <Link key={index} to={{pathname: `produto/${product.id}`, query: { id: product.id }}}>
-                    <Product key={index} product={product} />
+                <div key={index} className="item-carrinho">
+                  <Link to={{pathname: `produto/${product.id}`, query: { id: product.id }}}>
+                    <Product product={product} />
                   </Link>
                   <Button key={product.id} onClick={() => this.removeCart(product)} className="remove">&times;</Button>
                 </div>  
