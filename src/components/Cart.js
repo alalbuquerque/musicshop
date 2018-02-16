@@ -87,7 +87,13 @@ class Cart extends React.Component {
       headerText: 'Finalizar compra.',
       customer:{
         type: 'individual',
-      }
+        country: 'br',
+        name: 'Daenerys Targaryen',
+        documents: [{
+            type: 'cpf',
+            number: '00000000000'
+        }]
+    }
     })
   }
 
@@ -135,6 +141,11 @@ class Cart extends React.Component {
               <Button className="finalizar" onClick={() => this.checkoutPurchase(total)} disabled={(total <= 0) && 'disabled'}>Finalizar compra</Button>
           </div>
         </div>
+        
+
+        {
+          !payablesModal.fetched && <span> recuperando informações da transação </span>
+        }
 
         {
           payablesModal.visible &&
