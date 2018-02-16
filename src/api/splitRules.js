@@ -9,7 +9,6 @@ export default ({recipients, client, payables}) =>
           recipient_id: recipient.id,
           percentage: account.percentage
         }))
-        .then(console.log(recipient))
     )
   ).then(splits => ({client, splits}))
 

@@ -84,8 +84,7 @@ class Cart extends React.Component {
 
     this.setState({
       cart: {
-        products: [],
-        visible: false
+        products: []
       },
       payablesModal: {
         payables,
@@ -178,7 +177,7 @@ class Cart extends React.Component {
 
 
         {
-          !payablesModal.fetched && <span> recuperando informações da transação </span>
+          !payablesModal.fetched && <div className="loading"> recuperando informações da transação </div>
         }
 
         {

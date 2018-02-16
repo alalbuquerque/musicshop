@@ -1,9 +1,9 @@
 export default ({client, transaction}) =>
   client.transaction.find({transactionId: transaction.token})
-    .then(getPayables(client))
+    .then(payables(client))
     .then(payables => ({...payables, transaction}))
 
-const getPayables = (client) => (payables) =>
+const payables = (client) => (payables) =>
   Promise.all(
     payables.map(({recipient_id, amount}) =>
       client.recipients.find({id: recipient_id})
