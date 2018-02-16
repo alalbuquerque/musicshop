@@ -1,8 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
+import CaptureTransaction from '../api'
+
 import Product from './Product';
+import Payables from './Payables';
+
 import Button from './Button';
+import Modal from './Modal';
 import FaCart from 'react-icons/lib/md/shopping-cart';
 
 class Cart extends React.Component {
@@ -12,7 +18,18 @@ class Cart extends React.Component {
     this.state = {
       product :  this.props.products.get(parseInt(this.props.match.params.id, 10)),
       cart: this.props.cart, 
+      payablesModal: {
+        payables: [],
+        amount: 0,
+        fetched: true,
+        visible: false
+      }
     }
+
+
+    this.showPayables = this.showPayables.bind(this)
+    this.checkoutPurchase = this.checkoutPurchase.bind(this)
+    this.closePayablesModal = this.closePayablesModal.bind(this)
 
   }  
 
@@ -27,52 +44,67 @@ class Cart extends React.Component {
       }
     })
 
+
     this.props.callbackRemoveCart(product);
   }
 
+  showPayables ({payables, transaction}) {
+    const { payablesModal } = this.state
 
-  checkout (amount) {
-    var checkout = new window.PagarMeCheckout.Checkout({"encryption_key":"ek_test_cSHiLy4gg23jlxgRUMOAZb6UeUOfJb", 
-      success: function(data) {
-        console.log(data);
-      }, error: function(err) {
-          console.log(err);
+    this.setState({
+      cart: {
+        products: [],
+        visible: false
+      },
+      payablesModal: {
+        payables,
+        transaction,
+        fetched: true,
+        visible: !payablesModal.visible
       }
-    });
+    })
+  }
 
-    var params = {
-      "amount": amount,
-      "buttonText":"Pagar", 
-      "payment_method": "boleto", 
-      "postback_url": "http://requestb.in/pkt7pgpk",
-      "split_rules": [
-        {
-          "recipient_id": 're_civb4p9l7004xbm6dhsetkpj8',
-          "percentage": 60,
-          "liable": true,
-          "charge_processing_fee": true
-        },
-        {
-          "recipient_id": 're_civb4o6zr003u3m6e8dezzja6',
-          "percentage": 25,
-          "liable": false,
-          "charge_processing_fee": true
-        },
-        {
-          "recipient_id": '',
-          "percentage": 15,
-          "liable": false,
-          "charge_processing_fee": true
-        }
-      ]
-    };
+  checkoutPurchase (amount) {
+    const checkout = new window.PagarMeCheckout.Checkout({
+      encryption_key: 'ek_test_cSHiLy4gg23jlxgRUMOAZb6UeUOfJb',
+      success: transaction => {
+        this.setState({
+          payablesModal: { fetched: false }
+        })
 
-    checkout.open(params);
+        CaptureTransaction(transaction, amount)
+          .then(this.showPayables)
+      }
+    })
 
+    checkout.open({
+      amount,
+      buttonText: 'Pagar',
+      paymentMethods: 'boleto',
+      uiColor: '#444444',
+      createToken: 'true',
+      headerText: 'Finalizar compra.',
+      customer:{
+        type: 'individual',
+      }
+    })
+  }
+
+
+  closePayablesModal () {
+    const { payablesModal } = this.state
+
+    this.setState({
+      payablesModal: {
+        ...payablesModal,
+        visible: !payablesModal.visible
+      }
+    })
   }
 
   render() {
-    const { cart } = this.state;
+    const { cart, payablesModal } = this.state;
     const products = cart.products;
     const total = products.map((product, index) => product.price).reduce((previousPrice, currentPrice) => previousPrice + currentPrice, 0)
     
@@ -100,9 +132,21 @@ class Cart extends React.Component {
               <div className="valor-carrinho">
                 <p>Total: <strong>R$ {(total/100).toFixed(2).replace('.', ',')}</strong></p>
               </div>
-              <Button className="finalizar" onClick={() => this.checkout(total)} disabled={(total <= 0) && 'disabled'}>Finalizar compra</Button>
+              <Button className="finalizar" onClick={() => this.checkoutPurchase(total)} disabled={(total <= 0) && 'disabled'}>Finalizar compra</Button>
           </div>
         </div>
+
+        {
+          payablesModal.visible &&
+          <Modal visible={payablesModal.visible}>
+            <Payables
+              payables={payablesModal.payables}
+              closeModal={this.closePayablesModal}
+              transaction={payablesModal.transaction}
+            />
+          </Modal>
+        }
+
       </div>
     )
   }
