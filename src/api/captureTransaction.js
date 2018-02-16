@@ -3,4 +3,4 @@ export default (transactionToken, amount) => ({client, splits}) =>
     amount,
     id: transactionToken,
     split_rules: splits
-  }).then(transaction => ({transaction, client}))
+  }).then(transaction => ({client, transaction}))

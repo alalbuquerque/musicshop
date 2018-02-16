@@ -1,4 +1,4 @@
-import { recipient as MockRecipient } from '../mock'
+import { recipient as MockRecipient } from '../Api'
 
 export default (payables) => (client) =>
   Promise.all(
@@ -11,3 +11,4 @@ export default (payables) => (client) =>
 const createRecipient = (client) => (account) =>
   client.recipients.create({...MockRecipient, bank_account_id: account.id})
     .then(recipient => recipient)
+    .then(console.log(client))

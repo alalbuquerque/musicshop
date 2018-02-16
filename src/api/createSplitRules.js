@@ -9,8 +9,9 @@ export default ({recipients, client, payables}) =>
           recipient_id: recipient.id,
           percentage: account.percentage
         }))
+        .then(console.log(recipient))
     )
-  ).then(splits => ({splits, client}))
+  ).then(splits => ({client, splits}))
 
 const matchBankAccount = (payables) => (account) =>
   payables.find(person => person.conta === account.conta)

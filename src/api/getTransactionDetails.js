@@ -1,5 +1,5 @@
 export default ({client, transaction}) =>
-  client.payables.find({transactionId: transaction.id})
+  client.transaction.find({transactionId: transaction.token})
     .then(getPayables(client))
     .then(payables => ({...payables, transaction}))
 
@@ -15,3 +15,4 @@ const getPayables = (client) => (payables) =>
         }))
     )
   ).then(payables => ({payables}))
+

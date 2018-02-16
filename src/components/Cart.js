@@ -19,10 +19,41 @@ class Cart extends React.Component {
       product :  this.props.products.get(parseInt(this.props.match.params.id, 10)),
       cart: this.props.cart, 
       payablesModal: {
-        payables: [],
+        payables: [
+          {
+            legal_name: 'Amanda Leite de Albuquerque',
+            percentage: 25,
+            bank_code: '341',
+            agencia: '7499',
+            agencia_dv: '0',
+            conta: '13114',
+            conta_dv: '7',
+            document_number: '13723738702'
+          },
+          {
+            legal_name: 'Gloria Groove - Musicshop',
+            percentage: 60,
+            bank_code: '341',
+            agencia: '6327',
+            agencia_dv: '0',
+            conta: '14804',
+            conta_dv: '2',
+            document_number: '13723738702'
+          },
+          {
+            legal_name: 'Pabllo Vittar',
+            percentage: 15,
+            bank_code: '341',
+            agencia: '7499',
+            agencia_dv: '0',
+            conta: '13114',
+            conta_dv: '7',
+            document_number: '13723738702'
+          }
+        ],
         amount: 0,
         fetched: true,
-        visible: false
+        visible: true
       }
     }
 
@@ -69,7 +100,6 @@ class Cart extends React.Component {
     const checkout = new window.PagarMeCheckout.Checkout({
       encryption_key: process.env.REACT_APP_ENC_KEY,
       success: transaction => {
-        console.log(transaction);
         this.setState({
           payablesModal: { fetched: false }
         })
