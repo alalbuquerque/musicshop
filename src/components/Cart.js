@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-import CaptureTransaction from '../api'
+import CaptureTransaction from '../api/index.js';
 
 import Product from './Product';
 import Payables from './Payables';
