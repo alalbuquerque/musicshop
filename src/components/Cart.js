@@ -67,14 +67,18 @@ class Cart extends React.Component {
 
   checkoutPurchase (amount) {
     const checkout = new window.PagarMeCheckout.Checkout({
-      encryption_key: 'ek_test_cSHiLy4gg23jlxgRUMOAZb6UeUOfJb',
+      encryption_key: process.env.REACT_APP_ENC_KEY,
       success: transaction => {
+        console.log(transaction);
         this.setState({
           payablesModal: { fetched: false }
         })
 
         CaptureTransaction(transaction, amount)
           .then(this.showPayables)
+      }, 
+      error: error => {
+        console.log(error);
       }
     })
 
@@ -141,7 +145,7 @@ class Cart extends React.Component {
               <Button className="finalizar" onClick={() => this.checkoutPurchase(total)} disabled={(total <= 0) && 'disabled'}>Finalizar compra</Button>
           </div>
         </div>
-        
+
 
         {
           !payablesModal.fetched && <span> recuperando informações da transação </span>
