@@ -18,6 +18,12 @@ musicshop/
     start.js
     test.js
   src/
+    api/
+      captureTransaction.js
+      index.js
+      recipients.js
+      splitRules.js
+      transaction.js
     components/
       Button.js
       Cart.js
@@ -49,6 +55,7 @@ musicshop/
     products.json
     registerServiceWorker.js
   README.md
+  .env.example
   package-lock.json
   package.json
   yarn-lock
@@ -67,6 +74,7 @@ $  npm install -g yarn
 ```
 $ git clone https://github.com/alalbuquerque/musicshop.git
 $ cd musicshop/
+$ cp .env.example .env # fill REACT_APP_API_KEY and REACT_APP_ENC_KEY with yours respectives keys
 $ yarn install
 ```
 
