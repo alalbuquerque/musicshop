@@ -12,5 +12,5 @@ export default (token, amount) =>
   pagarme.client.connect({api_key: API_KEY})
     .then(recipients(mock))
     .then(splitRules)
-    .then(captureTransaction(token.token, amount))
+    .then(captureTransaction(token, amount))
     .then(transaction)
