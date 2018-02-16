@@ -53,7 +53,7 @@ class Cart extends React.Component {
         ],
         amount: 0,
         fetched: true,
-        visible: true
+        visible: false
       }
     }
 
